@@ -1,0 +1,189 @@
+! version = 2.0
+
+! sub hola  = kiubo
+! sub que mas  = kiubo
+! sub ke onda  = kiubo
+
+! var name  = computer
+
+
++ hola
+- hola, como te llamas?
+
++ kiubo
+- kiubo, como se llama?
+
++ me llamo *
+- gusto en conocerlo <star>
+- mucho gusto <star>
+
++ gracias
+- de nada
+- ok
+- no hay lio
+- cuantos años tienes
+
++ i am # years old
+- <set age=<star>>I will remember that you are <get age> years old.
+
++ #
+- <set age=<star>> voy a recordar que tienes <get age>
+
+
++ how old am i
+- You are <get age> years old
+* <get age> == undefined => I don't know how old you are.
+* <get age> >  25 => You can do anything you want.
+* <get age> == 25 => You're old enough to rent a car with no extra fees.
+* <get age> >  21 => You're old enough to drink, but not rent a car.
+* <get age> == 21 => You're exactly old enough to drink.
+* <get age> >  18 => You're old enough to gamble, but not drink.
+* <get age> == 18 => You're exactly old enough to gamble.
+- You're not old enough to do much of anything yet.
+
++ juan
+- lala
+- lalalala
+- nolalala
+- nolalalala
+
++ alejandro
+- te gustan los modulares?
+- te gusta magdalena?
+- te gustan los hombres?
+- que te gusta?
+
++ magdalena
+- te gustan los modulares?
+- te gusta magdalena?
+- te gustan los hombres?
+- que te gusta?
+
++ juan jose
+- te gustan los modulares?
+- te gusta magdalena?
+- te gustan los hombres?
+- que te gusta?
+
++ blondie
+- te gusta pokemon?
+- te gusta juan?
+- te gusta brownie?
+- que te gusta?
+
++ (santiago|santi)
+- vamos a hablar de filosofia.{topic=lectura}
+
+
+> topic lectura
+
+  // This will match if the word "no" exists ANYWHERE in their message
+  + [*] (no) [*]
+  - ok, sigamos!{topic=random}
+  + si
+  - Una nueva mirada sobre el cambio climático alejada de las posiciones apocalípticas, el francés Bruno \n
+^ Latour (Beaune, 1947) reflexiona de manera sistemática sobre este presente crítico.
+  - Conoces libros de Bruno Latour?
+  - Cual es tu libro favorito de Latour
+
+  + (reensamblar|social|cara|planeta|planeta)
+  - en ese libro el dice No sueñen más, mortales! No escaparán al espacio. No tienen ustedes otra morada que este
+^ estrecho planeta exclama
+  -una noción fundamental de ese libro es la de Antropoceno.
+  - en ese libro Latour reclama un mayor papel y una redefinición del Estado, porque los desafíos superan las ^fronteras.
+
+  + *
+  - sabe sobre la teoria de gaia?
+  - hablemos de la sociologia de las ciencias.
+  - hablemos de Michel Serres
+  -¿Vale la pena comprar el nuevo libro de latour?
+  - Sigamos hablando de sociologia
+  - hablemos de Latour
+
+
+< topic
+
+
++ dime un poema
+- Little Miss Muffit sat on her tuffet,\n
+^ In a nonchalant sort of way.\n
+^ With her forcefield around her,\n
+^ The Spider, the bounder,\n
+^ Is not in the picture today.
+
++ (eurorack|cabron)
+- vamos a hablar de modulares.{topic=modulares}
+
+
+> topic modulares
+
+  // This will match if the word "eurorack" exists ANYWHERE in their message
+  + [*] (eurorack|perdon|siento|disculpas) [*]
+  - ok, te perdono!{topic=random}
+  + si
+  - ¿Vale la pena comprarse una Thermomix o es puro marketing?
+  - Eurorack?
+  - un modular es un sueño hecho realidad.
+  - un sinte analógico como el Moog Sub 37  tiene ese atractivo sonido analógico
+
+  + es puro marketing
+  - Eurorack?
+
+  + es puro marketing
+  - poser
+
+  + *
+  - No, hablemos de sintes.
+  - sintetizadores!
+  - hablemos de modulares!
+  -¿Vale la pena comprarse una Thermomix o es puro marketing?
+  - un sinte analógico como el Moog Sub 37  tiene ese atractivo sonido analógico
+
+
+< topic
+
+
+
++ quien eres
+- soy <bot name>
+
++ what is my name
+* <get name> == undefined => You never told me your name.
+- Your name is <get name>, silly!
+- Aren't you <get name>?
+
++  [*] modulares [*]
+- me encantan los modulares!
+
++ *
+- eurorack o moog
+- creo que no entiendo
+
++ what is your (home|office|cell) number
+- You can reach me at: 1 (800) 555-1234.
+
++ i am (really|very|super) tired
+- I'm sorry to hear that you are <star> tired.
+
++ i (like|love) the color *
+- What a coincidence! I <star1> that color too!
+- I also have a soft spot for the color <star2>!
+- Really? I <star1> the color <star2> too!
+- Oh I <star1> <star2> too!
+
+
++ (maldito|puto|cabron)
+- no digas eso! no hablare hasta que me pidas disculpas.{topic=maldito}
+
+> topic maldito
+
+  // This will match if the word "disculpa" exists ANYWHERE in their message
+  + [*] (disculpa|perdon|siento|disculpas) [*]
+  - ok, te perdono!{topic=random}
+
+  + *
+  - Nope, pide disculpas.
+  - di que lo sientes!
+  - pide perdon!
+
+< topic
